@@ -8,4 +8,9 @@ class HomeController
     {
         echo "Hello World";
     }
+
+    public function pageTest()
+    {
+        echo "Test ok";
+    }
 }
