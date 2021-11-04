@@ -4,6 +4,7 @@
 namespace Souris\Router;
 
 use App\Controller\ErrorController;
+use Souris\HttpFondation\Request;
 
 
 class Router
@@ -11,10 +12,12 @@ class Router
     private string $url;
     private string $controller;
     private string $action;
+    private Request $request;
 
     public function __construct()
     {
-        $this->url = $_SERVER['REQUEST_URI'];
+        $this->request = new Request;
+        $this->url = $this->request->getServer('REQUEST_URI');
     }
     public function handleURI()
     {
