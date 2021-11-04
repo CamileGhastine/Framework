@@ -1,15 +1,19 @@
 <?php
 namespace Souris\Router;
 
+use Souris\Container;
 use App\Controller\ErrorController;
 
 class Dispatcher
 {
+    private Router $router;
 
     public function __construct(
-        private Router $router
+        private Container $container
         )
-    {}
+    {
+        $this->router = $container['router'];
+    }
 
     public function run()
     {
