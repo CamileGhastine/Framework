@@ -7,8 +7,12 @@ require_once __DIR__.'/../vendor/autoload.php';
  * @description: framework PHP
  */
 
-require_once __DIR__.'/../app.php';
+use App\Controller\HomeController;
 
-$dispatcher->run();
+$homeController = new HomeController();
+
+$homeController->home();
+
+// $dispatcher->run();
 
 
