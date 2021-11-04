@@ -5,11 +5,9 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 
 use Souris\Router\Router;
+use Souris\Router\Dispatcher;
 
-$router = new Router();
-$router->run();
-
-
-// $dispatcher->run();
+$dispatcher = new Dispatcher(new Router());
+$dispatcher->run();
 
 
