@@ -2,6 +2,8 @@
 
 namespace Souris;
 
+use \Error;
+
 use ArrayAccess;
 
 class Container implements ArrayAccess

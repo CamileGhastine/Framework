@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace Souris\Controller;
 
 class ErrorController
 {
