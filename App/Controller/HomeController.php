@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
-class HomeController
+use Souris\Controller\AbstractController;
+
+class HomeController extends AbstractController
 {
     public function home()
     {
-        echo "Hello World";
+        $this->render('index', [
+            'name'  => 'Nicolas',
+        ]);
     }
 
     public function pageTest()
