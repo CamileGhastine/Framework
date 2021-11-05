@@ -1,24 +1,21 @@
 <?php
 
-namespace Souris\Router;
+namespace Souris;
 
 use Souris\Container;
-use Souris\HttpFondation\Request;
+use Souris\Router\Router;
+use Souris\Router\UriHandler;
 use Souris\Controller\ErrorController;
 
 class Dispatcher
 {
     private Router $router;
-
-    private string $uri;
     private array $routes;
     private UriHandler $uriHandler;
-    private Request $request;
 
     public function __construct(
         private Container $container
     ) {
-        $this->request = $container['request'];
         $this->router = $container['router'];
         $this->routes = $container['routes'];
         $this->uriHandler = $container['uriHandler'];
