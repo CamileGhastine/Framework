@@ -10,11 +10,16 @@ abstract class AbstractController
     {
     }
 
-    public function render(string $view, array $params=[])
+    public function render(string $view, array $params = [])
     {
         $twig = $this->container['twig'];
+        $class = explode('\\', get_class($this));
+        $class = end($class);
+        $method = debug_backtrace()[1]['function'];
+        $baseTwig= $class.'.'.$method;
+        $baseTwig = isset($this->container['config'][$baseTwig]) ? $class.'.'.$method : 'default';
 
-        $template = $twig->load('base.html.twig');
+        $template = $twig->load($this->container['config'][$baseTwig]);
         $template = $twig->load($view);
         echo $template->render($params);
     }

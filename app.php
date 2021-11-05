@@ -25,6 +25,8 @@ $container['request'] = function () {
 
 $container['routes'] = require_once __DIR__ . "/config/routes.php";
 
+$container['config'] = require_once __DIR__ . "/config/config.php";
+
 $container['router'] = function () {
     return new Router();
 };
