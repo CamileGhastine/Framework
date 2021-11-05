@@ -10,7 +10,9 @@ class UriHandler
 
     public function __construct(private Request $request, private array $routes)
     {
-        $this->uri = explode('?', $this->request->getServer('REQUEST_URI'))[0];
+        $uri = explode('?', $this->request->getServer('REQUEST_URI'))[0];
+        $uri = rtrim($uri, '/');
+        $this->uri = $uri ? $uri : '/';
     }
 
     public function getUri()
@@ -35,17 +37,4 @@ class UriHandler
 
         return false;
     }
-
-    // public function getParam()
-    // {
-    //     if (preg_match($routeParams['pattern'], $this->uri, $regexParams)) {
-    //         $params = [];
-    //         foreach ($regexParams as $k => $v) {
-    //             if (!is_int($k)) $params[$k] = $v;
-    //         }
-    //         return $params;
-    //     }
-
-    //     return false;
-    // }
 }
