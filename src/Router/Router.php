@@ -9,11 +9,13 @@ use Souris\HttpFondation\Request;
 
 class Router
 {
-    public function getRoute(string $uri, array $routes)
+    public function getRoute(string $uri, array $routes, UriHandler $uriHandler)
     {
-        if (isset($routes[$uri])) {
-            return $routes[$uri];
+        if ($uriHandler->routeMatch()) {
+            return $uriHandler->routeMatch();
         }
+
+
         return false;
     }
 }

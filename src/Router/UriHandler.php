@@ -10,42 +10,42 @@ class UriHandler
 
     public function __construct(private Request $request, private array $routes)
     {
+        $this->uri = explode('?', $this->request->getServer('REQUEST_URI'))[0];
     }
 
     public function getUri()
     {
-        $this->uri = explode('?', $this->request->getServer('REQUEST_URI'))[0];
         return $this->uri;
     }
 
-    public function AnalyseRoute()
+    public function routeMatch()
     {
-        foreach ($this->routes as $route => $v) {
-            $this->analyse($route);
-        }
-    }
-
-    private function analyse($route)
-    {
-        $uriParams = explode('/', $this->uri);
-        $routesParams = explode('/', $route);
-
-        for ($i = 1; $i < count($uriParams); $i++) {
-            $j = 1;
-            echo $uriParams[$i] .'==='. $routesParams[2] .'<br>';
-            if ($uriParams[$i] === $routesParams[$j]) {
-            
+        foreach ($this->routes as $route => $routeParams) {
+            if ($route === $this->uri) {
+                return $routeParams;
+            } elseif (isset($routeParams['pattern']) && preg_match($routeParams['pattern'], $this->uri, $regexParams)) {
+                $params = [];
+                foreach ($regexParams as $k => $v) {
+                    if (!is_int($k)) $params[$k] = $v;
+                }
+                $routeParams['args'] = $params;
+                return $routeParams;
             }
-            // if (preg_match('#\{(.)+\}$#', $routesParams[$j])) {
-            //     echo '{{';
-            // }
-            $j++;
         }
-        echo '<br>';
+
+        return false;
     }
 
-    private function explode()
-    {
-        return explode();
-    }
+    // public function getParam()
+    // {
+    //     if (preg_match($routeParams['pattern'], $this->uri, $regexParams)) {
+    //         $params = [];
+    //         foreach ($regexParams as $k => $v) {
+    //             if (!is_int($k)) $params[$k] = $v;
+    //         }
+    //         return $params;
+    //     }
+
+    //     return false;
+    // }
 }

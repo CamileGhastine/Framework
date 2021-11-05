@@ -1,4 +1,5 @@
 <?php
+
 namespace Souris\Router;
 
 use Souris\Container;
@@ -16,8 +17,7 @@ class Dispatcher
 
     public function __construct(
         private Container $container
-        )
-    {
+    ) {
         $this->request = $container['request'];
         $this->router = $container['router'];
         $this->routes = $container['routes'];
@@ -27,11 +27,11 @@ class Dispatcher
     public function run()
     {
         $uri = $this->uriHandler->getUri();
-        $this->uriHandler->analyseRoute();
+        $route = $this->router->getRoute($uri, $this->routes, $this->container['uriHandler']);
 
-        $route = $this->router->getRoute($uri, $this->routes);
 
-        try{
+
+        try {
             if (!$route) {
                 throw new \Exception("not found");
             }
@@ -39,15 +39,16 @@ class Dispatcher
             if (
                 !class_exists($route['controller'])
                 || !method_exists($route['controller'], $route['action'])
-            ){
+            ) {
                 throw new \Exception("Cette classe ou methide n'existe pas.");
             }
 
             $controller = new $route['controller'];
             $action = $route['action'];
-            $controller->$action();
+            $args = isset($route['args'])? implode(',', $route['args']) : null;
 
-        }catch(\Exception $e){
+            $controller->$action($args);
+        } catch (\Exception $e) {
             $controller = new ErrorController();
             $controller->page404();
         }
