@@ -15,7 +15,16 @@ class HomeController extends AbstractController
 
     public function pageTest()
     {
-        $this->render('test.html.twig');
+        $form = $this->container['form'];
+        $form->add($this->container['input']);
+        $submit = $this->container['input'];
+        $submit->setType('submit')->setId('submit');
+        $form->add($submit);
+
+        $this->render('test.html.twig', 
+            [
+                'form'  => $form->formView(),
+            ]);
     }
 
     public function find(int $id)

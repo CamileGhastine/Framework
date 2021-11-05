@@ -2,7 +2,10 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
+use Souris\Form\Form;
 use Souris\Container;
+use Souris\Form\Input;
+use Souris\Form\Wrapper;
 use Twig\Environment;
 use Souris\Router\Router;
 use Souris\Router\UriHandler;
@@ -31,3 +34,12 @@ $container['twig'] = function (){
     return new \Twig\Environment($loader);
 };
 
+$container['form'] = function (){
+    return new Form();
+};
+$container['wrapper'] = function (){
+    return new Wrapper();
+};
+$container['input'] = function (){
+    return new Input();
+};
