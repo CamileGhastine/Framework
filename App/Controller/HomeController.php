@@ -8,18 +8,20 @@ class HomeController extends AbstractController
 {
     public function home()
     {
-        $this->render('index', [
+        $this->render('index.html.twig', [
             'name'  => 'Nicolas',
         ]);
     }
 
     public function pageTest()
     {
-        echo "Test ok";
+        $this->render('test.html.twig');
     }
 
     public function find(int $id)
     {
-        echo "Test ok: $id";
+        $this->render('show.html.twig', [
+            'id'  => $id,
+        ]);
     }
 }

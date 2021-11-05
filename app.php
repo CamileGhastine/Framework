@@ -3,9 +3,11 @@
 require_once __DIR__.'/vendor/autoload.php';
 
 use Souris\Container;
+use Twig\Environment;
 use Souris\Router\Router;
-use Souris\HttpFondation\Request;
 use Souris\Router\UriHandler;
+use Souris\HttpFondation\Request;
+use Twig\Loader\FilesystemLoader;
 
 $container = new Container;
 
@@ -22,5 +24,10 @@ $container['router'] = function () {
 
 $container['uriHandler'] = function () use ($container) {
     return new UriHandler($container['request'], $container['routes']);
+};
+
+$container['twig'] = function (){
+    $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/App/View');
+    return new \Twig\Environment($loader);
 };
 
