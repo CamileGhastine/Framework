@@ -43,7 +43,7 @@ class Dispatcher
                 throw new \Exception("Cette classe ou methide n'existe pas.");
             }
 
-            $controller = new $route['controller'];
+            $controller = new $route['controller']($this->container);
             $action = $route['action'];
             $args = isset($route['args'])? implode(',', $route['args']) : null;
 

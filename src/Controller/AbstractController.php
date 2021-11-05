@@ -2,8 +2,14 @@
 
 namespace Souris\Controller;
 
+use Souris\Container;
+
 abstract class AbstractController
 {
+    public function __construct(private Container $container)
+    {
+
+    }
 
     public function render(string $view, array $params=[])
     {
