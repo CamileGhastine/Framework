@@ -2,6 +2,7 @@
 namespace Souris\Router;
 
 use Souris\Container;
+use Souris\HttpFondation\Request;
 use Souris\Controller\ErrorController;
 
 class Dispatcher
@@ -10,6 +11,8 @@ class Dispatcher
 
     private string $uri;
     private array $routes;
+    private UriHandler $uriHandler;
+    private Request $request;
 
     public function __construct(
         private Container $container
@@ -18,13 +21,16 @@ class Dispatcher
         $this->request = $container['request'];
         $this->router = $container['router'];
         $this->routes = $container['routes'];
+        $this->uriHandler = $container['uriHandler'];
     }
 
     public function run()
     {
-        $this->uri = $this->request->getServer('REQUEST_URI');
+        $uri = $this->uriHandler->getUri();
+        $this->uriHandler->analyseRoute();
 
-        $route = $this->router->getRoute($this->uri, $this->routes);
+        $route = $this->router->getRoute($uri, $this->routes);
+
         try{
             if (!$route) {
                 throw new \Exception("not found");

@@ -9,7 +9,6 @@ use Souris\HttpFondation\Request;
 
 class Router
 {
-
     public function getRoute(string $uri, array $routes)
     {
         if (isset($routes[$uri])) {
@@ -17,5 +16,4 @@ class Router
         }
         return false;
     }
-
 }

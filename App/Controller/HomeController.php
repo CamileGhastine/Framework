@@ -17,4 +17,9 @@ class HomeController extends AbstractController
     {
         echo "Test ok";
     }
+
+    public function find(int $id)
+    {
+        echo "Test ok: $id";
+    }
 }
