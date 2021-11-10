@@ -6,6 +6,6 @@ class ErrorController
 {
     public function page404()
     {
-        return "Error 404";
+        return "Erreur 404 : page non trouvée !!!";
     }
 }
