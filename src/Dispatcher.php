@@ -2,7 +2,7 @@
 
 namespace Souris;
 
-use Souris\Container;
+use Souris\Container\Container;
 use Souris\Router\Router;
 use Souris\Router\UriHandler;
 use Souris\Controller\ErrorController;

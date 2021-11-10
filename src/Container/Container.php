@@ -1,6 +1,6 @@
 <?php
 
-namespace Souris;
+namespace Souris\Container;
 
 use \Error;
 

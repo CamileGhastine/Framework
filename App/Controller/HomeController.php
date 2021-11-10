@@ -21,10 +21,12 @@ class HomeController extends AbstractController
         $submit->setType('submit')->setId('submit');
         $form->add($submit);
 
-        return $this->render('test.html.twig', 
+        return $this->render(
+            'test.html.twig',
             [
                 'form'  => $form->formView(),
-            ]);
+            ]
+        );
     }
 
     public function find(int $id)
