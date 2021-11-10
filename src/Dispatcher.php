@@ -37,17 +37,17 @@ class Dispatcher
                 !class_exists($route['controller'])
                 || !method_exists($route['controller'], $route['action'])
             ) {
-                throw new \Exception("Cette classe ou methide n'existe pas.");
+                throw new \Exception("Cette classe ou methode n'existe pas.");
             }
 
             $controller = new $route['controller']($this->container);
             $action = $route['action'];
-            $args = isset($route['args'])? implode(',', $route['args']) : null;
+            $args = isset($route['args']) ? implode(',', $route['args']) : null;
 
             echo $controller->$action($args);
         } catch (\Exception $e) {
             $controller = new ErrorController();
-            $controller->page404();
+            echo $controller->page404();
         }
     }
 }

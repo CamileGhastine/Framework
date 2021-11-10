@@ -34,4 +34,3 @@ class Container implements ArrayAccess
     {
     }
 }
-

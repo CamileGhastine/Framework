@@ -6,12 +6,10 @@ use Souris\Composite\Composite;
 
 class Form extends Composite
 {
-
     public function __construct(
-        private string $action='',
-        private string $method="POST",
-    )
-    {
+        private string $action = '',
+        private string $method = "POST",
+    ) {
         parent::__construct();
     }
 
@@ -19,5 +17,4 @@ class Form extends Composite
     {
         return "<form action=\"{$this->action}\" method=\"{$this->method}\">" . parent::operation() . "</form>";
     }
-
 }

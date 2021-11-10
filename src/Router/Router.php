@@ -15,7 +15,6 @@ class Router
             return $uriHandler->routeMatch();
         }
 
-
         return false;
     }
 }
