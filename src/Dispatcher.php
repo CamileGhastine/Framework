@@ -44,7 +44,7 @@ class Dispatcher
             $action = $route['action'];
             $args = isset($route['args'])? implode(',', $route['args']) : null;
 
-            $controller->$action($args);
+            echo $controller->$action($args);
         } catch (\Exception $e) {
             $controller = new ErrorController();
             $controller->page404();

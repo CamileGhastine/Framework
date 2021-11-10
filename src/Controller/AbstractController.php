@@ -23,6 +23,6 @@ abstract class AbstractController
         
         $template = $twig->load($this->container['config'][$baseTwig]);
         $template = $twig->load($view);
-        echo $template->render($params);
+        return $template->render($params);
     }
 }

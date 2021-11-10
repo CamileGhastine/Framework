@@ -8,7 +8,7 @@ class HomeController extends AbstractController
 {
     public function home()
     {
-        $this->render('index.html.twig', [
+        return $this->render('index.html.twig', [
             'name'  => 'Nicolas',
         ]);
     }
@@ -21,7 +21,7 @@ class HomeController extends AbstractController
         $submit->setType('submit')->setId('submit');
         $form->add($submit);
 
-        $this->render('test.html.twig', 
+        return $this->render('test.html.twig', 
             [
                 'form'  => $form->formView(),
             ]);
@@ -29,7 +29,7 @@ class HomeController extends AbstractController
 
     public function find(int $id)
     {
-        $this->render('show.html.twig', [
+        return $this->render('show.html.twig', [
             'id'  => $id,
         ]);
     }
