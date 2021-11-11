@@ -2,7 +2,7 @@
 
 namespace Souris\Form;
 
-use Souris\Form\Component;
+use Souris\Composite\Component;
 
 class Wrapper extends Component
 {
