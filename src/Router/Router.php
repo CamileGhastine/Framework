@@ -9,7 +9,7 @@ use Souris\HttpFondation\Request;
 
 class Router
 {
-    public function getRoute(string $uri, array $routes, UriHandler $uriHandler)
+    public function getRoute(UriHandler $uriHandler)
     {
         if ($uriHandler->routeMatch()) {
             return $uriHandler->routeMatch();

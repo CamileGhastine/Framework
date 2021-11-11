@@ -24,7 +24,7 @@ class Dispatcher
     public function run()
     {
         $uri = $this->uriHandler->getUri();
-        $route = $this->router->getRoute($uri, $this->routes, $this->container['uriHandler']);
+        $route = $this->router->getRoute($this->container['uriHandler']);
 
 
 
