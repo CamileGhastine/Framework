@@ -4,29 +4,21 @@ namespace Souris;
 
 use Souris\Container;
 use Souris\Router\Router;
-use Souris\Router\UriHandler;
 use Souris\Controller\ErrorController;
 
 class Dispatcher
 {
     private Router $router;
-    private array $routes;
-    private UriHandler $uriHandler;
 
     public function __construct(
         private Container $container
     ) {
         $this->router = $container['router'];
-        $this->routes = $container['routes'];
-        $this->uriHandler = $container['uriHandler'];
     }
 
     public function run()
     {
-        $uri = $this->uriHandler->getUri();
         $route = $this->router->getRoute($this->container['uriHandler']);
-
-
 
         try {
             if (!$route) {
