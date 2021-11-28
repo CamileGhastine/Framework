@@ -4,8 +4,15 @@ namespace App\Controller;
 
 use Souris\Controller\AbstractController;
 
+/**
+ * Class HomeController
+ * @package App\Controller
+ */
 class HomeController extends AbstractController
 {
+    /**
+     * @return mixed
+     */
     public function home()
     {
         return $this->render('index.html.twig', [
@@ -13,6 +20,9 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * @return mixed
+     */
     public function pageTest()
     {
         $form = $this->container['form'];
@@ -29,6 +39,10 @@ class HomeController extends AbstractController
         );
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function find(int $id)
     {
         return $this->render('show.html.twig', [

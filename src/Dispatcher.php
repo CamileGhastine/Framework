@@ -35,6 +35,8 @@ class Dispatcher
         private Container $container
     ) {
         $this->router = $container['router'];
+        $this->routes = $container['routes'];
+        $this->uriHandler = $container['uriHandler'];
     }
 
     /**
