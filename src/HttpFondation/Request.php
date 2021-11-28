@@ -2,12 +2,30 @@
 
 namespace Souris\HttpFondation;
 
+/**
+ * Class Request
+ * @package Souris\HttpFondation
+ */
 class Request
 {
+    /**
+     * @var array
+     */
     private array $query;
+
+    /**
+     * @var array
+     */
     private array $post;
+
+    /**
+     * @var array
+     */
     private array $server;
 
+    /**
+     * Request constructor.
+     */
     public function __construct()
     {
         $this->query = $_GET;
@@ -15,6 +33,10 @@ class Request
         $this->server = $_SERVER;
     }
 
+    /**
+     * @param string $key
+     * @return array|mixed
+     */
     public function getServer(string $key = '')
     {
         if ($key) {
@@ -24,6 +46,10 @@ class Request
         return $this->server;
     }
 
+    /**
+     * @param string $key
+     * @return array|mixed
+     */
     public function getPost(string $key = '')
     {
         if ($key) {
@@ -33,6 +59,10 @@ class Request
         return $this->post;
     }
 
+    /**
+     * @param string $key
+     * @return array|mixed
+     */
     public function getQuery(string $key = '')
     {
         if ($key) {

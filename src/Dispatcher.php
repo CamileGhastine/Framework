@@ -6,12 +6,31 @@ use Souris\Container\Container;
 use Souris\Router\Router;
 use Souris\Router\UriHandler;
 
+/**
+ * Class Dispatcher
+ * @package Souris
+ */
 class Dispatcher
 {
+    /**
+     * @var Router|mixed
+     */
     private Router $router;
+
+    /**
+     * @var array|mixed
+     */
     private array $routes;
+
+    /**
+     * @var UriHandler|mixed
+     */
     private UriHandler $uriHandler;
 
+    /**
+     * Dispatcher constructor.
+     * @param Container $container
+     */
     public function __construct(
         private Container $container
     ) {
@@ -20,6 +39,9 @@ class Dispatcher
         $this->uriHandler = $container['uriHandler'];
     }
 
+    /**
+     * @throws \Exception
+     */
     public function run()
     {
         $uri = $this->uriHandler->getUri();
@@ -43,6 +65,11 @@ class Dispatcher
         }
     }
 
+    /**
+     * @param $controller
+     * @return mixed
+     * @throws \Exception
+     */
     private function makeController($controller)
     {
         if (!class_exists($controller)) {
@@ -52,6 +79,12 @@ class Dispatcher
         return new $controller($this->container);
     }
 
+    /**
+     * @param $controller
+     * @param $route
+     * @return mixed
+     * @throws \Exception
+     */
     private function call($controller, $route)
     {
         if (!method_exists($controller, $route['action'])) {
@@ -64,6 +97,10 @@ class Dispatcher
         return $controller->$action($args);
     }
 
+    /**
+     * @param $content
+     * @param string $status
+     */
     private function send($content, $status = '200')
     {
         header("HTTP/1.1 $status");

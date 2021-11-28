@@ -4,12 +4,25 @@ namespace Souris\Controller;
 
 use Souris\Container\Container;
 
+/**
+ * Class AbstractController
+ * @package Souris\Controller
+ */
 abstract class AbstractController
 {
+    /**
+     * AbstractController constructor.
+     * @param Container $container
+     */
     public function __construct(protected Container $container)
     {
     }
 
+    /**
+     * @param string $view
+     * @param array $params
+     * @return mixed
+     */
     public function render(string $view, array $params = [])
     {
         $twig = $this->container['twig'];
@@ -22,6 +35,12 @@ abstract class AbstractController
         return $template->render($params);
     }
 
+    /**
+     * @param $twig
+     * @param $class
+     * @param $method
+     * @return string
+     */
     private function findBaseTwig($twig, $class, $method)
     {
         $class = explode('\\', $class);
