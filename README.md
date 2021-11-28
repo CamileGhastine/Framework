@@ -1,5 +1,6 @@
 # Framework
 Création d'un micro-framework
 
-Eric
-nicolas
+- Nicolas Zanforlini
+- Eric Jalet
+- Camile Ghastine
