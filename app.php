@@ -3,7 +3,7 @@
 require_once __DIR__.'/vendor/autoload.php';
 
 use Souris\Form\Form;
-use Souris\Container;
+use Souris\Container\Container;
 use Souris\Form\Input;
 use Souris\Form\Wrapper;
 use Twig\Environment;
